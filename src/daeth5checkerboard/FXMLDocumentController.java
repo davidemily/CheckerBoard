@@ -40,8 +40,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }
-
-    public void startup(Stage stage) {
+    public void start(Stage stage) {
         this.stage = stage;
         menuBarHeight = menuBar.getHeight()*2;
         anchorPane.setPrefSize(stage.getWidth(), stage.getHeight());
@@ -58,8 +57,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleColorChange(ActionEvent event) {
-        if(checkerBoard != null && checkerBoard.getBoard() != null) {
-
+        if(checkerBoard.getBoard() != null) {
             if(event.getSource() == blueGridColor)
                 checkerBoard = new CheckerBoard(checkerBoard.getNumRows(), checkerBoard.getNumCols(), stage.getWidth(), (stage.getHeight() - menuBarHeight), Color.SKYBLUE, Color.DARKBLUE);    
             else if(event.getSource() == defaultGridColor)
@@ -69,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     }
     @FXML
     private void handleGridSizeChange(ActionEvent event) {
-        if(checkerBoard != null && checkerBoard.getBoard() != null) {
+        if(checkerBoard.getBoard() != null){
             if(event.getSource() == grid3x3)
                 checkerBoard = new CheckerBoard(3, 3, stage.getWidth(), (stage.getHeight() - menuBarHeight), checkerBoard.getLightColor(), checkerBoard.getDarkColor());
             else if(event.getSource() == grid8x8)
@@ -82,17 +80,7 @@ public class FXMLDocumentController implements Initializable {
             refreshBoard();
         }
     }
-    
-    @FXML
-    private void handleClear(){
-        anchorPane.getChildren().clear();
-    }
-    
-    @FXML
-    private void handleExit() {
-        stage.close();
-    }
-    
+        
     private void refreshBoard() {
         anchorPane.getChildren().clear();
         anchorPane.setPrefSize((stage.getHeight() - menuBarHeight), stage.getHeight());

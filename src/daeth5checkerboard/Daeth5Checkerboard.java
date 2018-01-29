@@ -25,11 +25,11 @@ public class Daeth5Checkerboard extends Application {
         FXMLDocumentController controller = loader.getController();
         
         Scene scene = new Scene(root);
-        
+        stage.setTitle("David Emily's Checkerboard");
         stage.setScene(scene);
         stage.show();
         
-        controller.startup(stage);
+        controller.start(stage);
     }
 
     /**

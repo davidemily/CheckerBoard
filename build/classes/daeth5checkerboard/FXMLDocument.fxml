@@ -10,12 +10,6 @@
    <children>
       <MenuBar fx:id="menuBar">
         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleClear" text="Clear" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-               </items>
-            </Menu>
           <Menu mnemonicParsing="false" text="Color">
             <items>
               <MenuItem fx:id="defaultGridColor" mnemonicParsing="false" onAction="#handleColorChange" text="Default" />

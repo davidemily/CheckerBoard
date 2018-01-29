@@ -18,7 +18,6 @@ import javafx.scene.shape.Rectangle;
 
 public class CheckerBoard {
     
-    // FIELDS
     private AnchorPane anchorPane;
     private int numRows;
     private int numCols;
@@ -30,46 +29,38 @@ public class CheckerBoard {
     private Rectangle rectangle;
     
     
-    // CONSTRUCTORS
-    public CheckerBoard(int numRows, int numCols, double boardWidth, double boardHeight) {
+    
+    public CheckerBoard(int numRows, int numCols, double boardWidth, double boardHeight) { //constructor to call the other constructor
         this(numRows, numCols, boardWidth, boardHeight, Color.RED, Color.BLACK);
     }
-    public CheckerBoard(int numRows, int numCols, double boardWidth, double boardHeight, Color lightColor, Color darkColor) {
+    public CheckerBoard(int numRows, int numCols, double boardWidth, double boardHeight, Color lightColor, Color darkColor) {   //constructor that takes in colors
         this.numRows = numRows;
         this.numCols = numCols;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.lightColor = lightColor;
         this.darkColor = darkColor;
-        
-        anchorPane = new AnchorPane();
-        if(boardWidth / numCols > boardHeight / numRows)
+        if(boardWidth / numCols > boardHeight / numRows){
             rectSideLength = boardHeight / numRows;
-        else
+        }
+        else{
             rectSideLength = boardWidth / numCols;
+        }
     }
 
-    public AnchorPane build() {
-        anchorPane.getChildren().clear();
-
+    public AnchorPane build() { //builds the anchor pane
+        anchorPane = new AnchorPane();
         anchorPane.setPrefSize(boardWidth, boardHeight);
-        
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-                rectangle = new Rectangle(rectSideLength, rectSideLength);
-                rectangle.setFill(lightColor);
-                if((row + col)%2 != 0)
-                    rectangle.setFill(darkColor);
+                rectangle = new Rectangle(rectSideLength, rectSideLength);  //sets the blocks
+                rectangle.setFill(darkColor); //fill in with dark
+                if((row + col)%2 != 1){  //used mod instead of flag to keep track of light/dark
+                    rectangle.setFill(lightColor);
+                }
                 anchorPane.setTopAnchor(rectangle, (double) (col*rectSideLength+(boardHeight-rectSideLength*numCols)/(numCols/(numCols/2))));
                 anchorPane.setLeftAnchor(rectangle, (double) (row*rectSideLength+(boardWidth-rectSideLength*numRows)/(numRows/(numRows/2))));
-
-                try{
-                    anchorPane.getChildren().add(rectangle);
-                }
-                catch(Exception err)
-                {
-                    System.out.println(err);
-                }
+                anchorPane.getChildren().add(rectangle);
             }
         }
         return anchorPane;
@@ -77,10 +68,7 @@ public class CheckerBoard {
 
     public AnchorPane getBoard()
     {
-        if(anchorPane!= null)
-            return anchorPane;
-        else
-            return null;
+        return anchorPane;
     }
     
     public int getNumRows() {
